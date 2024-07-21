@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Indecisive fortunes</title>
+</head>
+<body>
+	<h2>Im not sure what will happen to you but it will be one of these three things:</h2>
+	{%for i in indecisive_fortunes%}
+	<h4>{{i}}</h4>
+	{%endfor%}
+	<a href="/home"> If you want to go back to the fortune teller press this</a>
+
+</body>
+</html>

@@ -1,7 +1,10 @@
 from flask import Flask,render_template,redirect,request,url_for
+from flask import session as login_session
 import random
 
 app = Flask(__name__,template_folder = 'templates')
+
+app.config['SECRET_KEY'] = "Nadav"
 
 fortunes = [
 "A fresh start will put you on your way.",
@@ -18,19 +21,24 @@ fortunes = [
 
 
 
-@app.route('/')
+@app.route('/', methods = ["GET","POST"])
 def defuelt():
-	return redirect('/home',302)
-
-@app.route('/home',methods = ['GET',"POST"])
-def home():
     if request.method == "GET":
-        return render_template('home.html')
+        return render_template("defu.html")
     else:
-        return redirect(url_for("fortune",birth_month = request.form['birth_month']))
-@app.route('/fortune/<birth_month>')
-def fortune(birth_month):
-	return render_template('fortune.html',fortune = len(birth_month)%10)
+        login_session['username'] = request.form['username']
+        login_session['birth_month'] = request.form['birth_month']
+        return redirect(url_for("home"))
+
+	
+
+@app.route('/home')
+def home():
+    return render_template('home.html',username = login_session["username"])
+
+@app.route('/fortune')
+def fortune():
+	return render_template('fortune.html',fortune = fortunes[len(login_session["birth_month"])%10])
 
 @app.route('/indecisive')
 def indecisive():
