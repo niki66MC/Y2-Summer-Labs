@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+
+
+</head>
+<body>
+<form action ="/notes" method ="POST" >
+	<label for = "name1">Enter the name of the note: </label>
+	<input type="text" name="name1" id = "name1" value = "{{name_note}}">
+	<input type="hidden" name="past_name" value={{name_note}}>
+	<input type="hidden" name="is_edit" value="1">
+
+
+<!-- 
+	<label for = "black">Black</label>
+	<input type="radio" name="color" value="black" id = "black" onclick="color_change('black')">
+	<label for = "red">Red</label>
+	<input type="radio" name="color" value="red" id = "red" onclick="color_change('red')">
+	<label for = "blue">Blue</label>
+	<input type="radio" name="color" value="blue" id = "blue" onclick="color_change('blue')">
+	<label for = "green">Green</label>
+	<input type="radio" name="color" value="green" id = "green" onclick="color_change('green')">
+	<br> -->
+	<!-- <p contenteditable = "true" id = "text1" >TEst</p>  -->
+	<br>
+	<br>
+	<label for = "text1">Enter note content:</label>
+	<br>
+	<textarea rows="20" cols="50" id = "text1" name="text1">{{notes[name_note]}}</textarea>
+	<input type="submit" value ="Submit">
+
+</form>
+
+</body>
+<script src="static/editor.js"></script>
+</html>

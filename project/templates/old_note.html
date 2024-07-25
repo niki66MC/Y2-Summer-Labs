@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<h1>{{note}}</h1>
+<br>
+<br>
+<br>
+<p>{{notes[note]}}</p>
+
+<br>
+<br>
+<form action="/edit_note" method="POST">
+	<input type="submit" name = "submit" value="Edit note">
+	<br>
+	<br>
+	<br>
+	<br>
+	<input type="submit" name="submit" value = "Delete note">
+	<input type = 'hidden' name="name1" value={{note}}>
+</form>
+
+
+</body>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<form action = "/editor">
+<br>
+<br>
+<label for = "new_note">Create a note: </label>
+<a href="editor"><input type="button" value="New note" id="new_note"></a>
+<br>
+<br>
+<br>
+<h3>Old notes:</h3>
+<br>
+
+
+{%for i in notes%}
+	<button type = "button"><a href="old_note/{{i}}">{{i}}</a></button>
+{%endfor%}
+
+<br>
+<br>
+<br>
+<br>
+<h4><button type="button"><a href="/signout">Signout</a></button></h4>
+</body>
+</html>
