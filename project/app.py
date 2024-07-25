@@ -83,11 +83,7 @@ def notes():
 			name1 = request.form['name1']
 			user1 = {name1 : note}
 			db.child("Users").child(login_session['user']['localId']).child("notes").update(user1) 
-			dict1 = {}
-			if type(db.child("Users").child(login_session['user']['localId']).child("notes").get().val()) == type(dict1):
-				return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val())
-			else:
-				return render_template("notes.html",notes = {})
+			return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val())
 	else:
 		dict1 = {}
 		if type(db.child("Users").child(login_session['user']['localId']).child("notes").get().val()) == type(dict1):
