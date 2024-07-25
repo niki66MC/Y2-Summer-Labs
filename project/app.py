@@ -77,19 +77,15 @@ def notes():
 			user1.pop(past_name)
 			user1[name1] = note
 			db.child("Users").child(login_session['user']['localId']).child("notes").set(user1)
-			return render_template("notes.html", notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val())
+			return render_template("notes.html", notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val(), del1 = "2")
 		else:
 			note = request.form['text1']
 			name1 = request.form['name1']
 			user1 = {name1 : note}
 			db.child("Users").child(login_session['user']['localId']).child("notes").update(user1) 
-			return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val())
+			return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val(), del1 = "2")
 	else:
-		dict1 = {}
-		if type(db.child("Users").child(login_session['user']['localId']).child("notes").get().val()) == type(dict1):
-			return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val())
-		else:
-			return render_template("notes.html",notes = {})
+		return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val(), del1 = "2")
 
 
 @app.route('/editor')
@@ -100,15 +96,14 @@ def editor():
 def edit_note():
 
 	if request.form["submit"] == "Delete note":
-		name1 = request.form['name1']
-		user1 = db.child("Users").child(login_session['user']['localId']).child("notes").get().val()
-		user1.pop(name1)
-		db.child("Users").child(login_session['user']['localId']).child("notes").set(user1)
-		dict1 = {}
-		if type(db.child("Users").child(login_session['user']['localId']).child("notes").get().val()) == type(dict1):
-			return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val())
+		if len(db.child("Users").child(login_session['user']['localId']).child("notes").get().val()) > 1:
+			name1 = request.form['name1']
+			user1 = db.child("Users").child(login_session['user']['localId']).child("notes").get().val()
+			user1.pop(name1)
+			db.child("Users").child(login_session['user']['localId']).child("notes").set(user1)
+			return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val(),del1 = "2")
 		else:
-			return render_template("notes.html",notes = {})
+			return render_template("notes.html",notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val(),del1 = "1")
 	else:
 		return render_template("edit_note.html",name_note = request.form['name1'], notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val())
 

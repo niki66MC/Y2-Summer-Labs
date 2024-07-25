@@ -16,7 +16,9 @@
 <br>
 <h3>Old notes:</h3>
 <br>
-
+{%if del == "1"%}
+	<h3>You have to have at least 1 note!</h3>
+{%endif%}
 
 {%for i in notes%}
 	<button type = "button"><a href="old_note/{{i}}">{{i}}</a></button>
