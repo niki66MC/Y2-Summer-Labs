@@ -113,6 +113,8 @@ def edit_note():
 def old_note(name_note):
 	dict1 = {}
 	return render_template('old_note.html',note = name_note, notes = db.child("Users").child(login_session['user']['localId']).child("notes").get().val())
+
+
 @app.route('/signout')
 def signout():
 	login_session['user'] = None
